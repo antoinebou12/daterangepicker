@@ -512,7 +512,9 @@
             if(!this.locale.rangeCounter){
                 this.container.find('.drp-selected').html(this.startDate.format(this.locale.format) + this.locale.separator + this.endDate.format(this.locale.format));
             } else {
-                this.container.find('.drp-selected').html((this.endDate.diff(this.startDate, this.locale.rangeCounter)).toString() + " " + this.locale.rangeCounter);
+                if (this.endDate != null){
+                    this.container.find('.drp-selected').html((this.endDate.diff(this.startDate, this.locale.rangeCounter)).toString() + " " + this.locale.rangeCounter);
+                }
             }
 
 
@@ -541,11 +543,12 @@
                     this.container.find('.right .calendar-time select').prop('disabled', false).removeClass('disabled');
                 }
             }
-            if (this.endDate)
+            if (this.endDate){
                 this.container.find('.drp-selected').html(this.startDate.format(this.locale.format) + this.locale.separator + this.endDate.format(this.locale.format));
-
-            if(!!this.locale.rangeCounter)
+            }
+            if(!!this.locale.rangeCounter && this.endDate != null){
                 this.container.find('.drp-selected').html((this.endDate.diff(this.startDate, this.locale.rangeCounter)).toString() + " " + this.locale.rangeCounter);
+            }
 
             this.updateMonthsInView();
             this.updateCalendars();
